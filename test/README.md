@@ -38,7 +38,7 @@ Ubah di bagian atas sketch sebelum upload:
 
 ```cpp
 String APN      = "internet";        /* APN provider SIM card */
-String HOST     = "72.62.124.206";   /* IP atau domain broker */
+String HOST     = "xxx.xxx.xxx.xxx";   /* IP atau domain broker */
 String PORT     = "1883";
 String DEVNAME  = "ESP32-TEST";      /* device name unik */
 String PUBTOPIC = "STM32-001/env";   /* topic publish */

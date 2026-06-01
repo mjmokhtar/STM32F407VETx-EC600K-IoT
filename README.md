@@ -224,6 +224,82 @@ Core/
     ├── sensor.c        ← XY-MD02 Modbus RTU driver
     └── lte_4g.c        ← EC600K driver (interrupt ring buffer)
 ```
+---
+
+## Result
+### Serial Monitor Output
+
+```
+[LTE] Init done
+[SENSOR] ret=-1 T=0.0 H=0.0
+[LTE] Task started
+[SENSOR] ret=0 T=31.3 H=76.7
+[LTE] Device init...
+[LTE] >> ATE0
+[LTE] << OK (OK)
+[LTE] Checking module...
+[LTE] >> AT+QINISTAT
+[LTE] << OK (+QINISTAT: 1)
+[LTE] Module ready
+[LTE] >> AT+CSQ
+[LTE] RSSI=28 (-57dBm)
+[LTE] >> AT+QCSQ
+[LTE] QCSQ raw:
++QCSQ: "LTE",58,-89,95,-14
+OK
+[LTE] RSRP=58 SINR=9
+[LTE] >> AT+COPS?
+[LTE] Op: INDOSATOOREDOO
+[LTE] >> AT+QNWINFO
+[LTE] QNWINFO:
++QNWINFO: "FDD LTE","51001","LTE BAND 1",200
+OK
+[LTE] Band: LTE BAND 1
+[LTE] Device OK
+[LTE] MQTT connecting...
+[LTE] >> AT+QMTCLOSE=0
+[LTE] << OK (OK)
+[LTE] >> AT+QICSGP=1,1,"internet","","",1
+[LTE] << OK (OK)
+[LTE] >> AT+QMTCFG="recv/mode",0,0,1
+[LTE] << OK (OK)
+[LTE] >> AT+QMTOPEN=0,"72.62.124.206",1883
+[LTE] << OK (+QMTOPEN: 0,0)
+[LTE] >> AT+QMTCONN=0,"STM32-001"
+[LTE] << OK (+QMTCONN: 0,0,0)
+[LTE] MQTT connected
+[LTE] >> AT+QLTS=2
+[LTE] Time: 2026/06/01,19:46:34+28,0
+[LTE] >> AT+QMTPUBEX=0,0,0,0,"STM32-001/env",177
+[LTE] << OK (>)
+[LTE] Got prompt
+[LTE] >> [payload 177 bytes]
+[LTE] << OK (+QMTPUBEX: 0,0,0)
+[LTE] Published OK
+```
+
+### MQTT Payload
+
+```json
+{
+  "device": "STM32-001",
+  "ts": "2026/06/01,19:46:34+28,0",
+  "environment": {
+    "temp": 31.3,
+    "humidity": 76.7
+  },
+  "lte": {
+    "rssi": 28,
+    "rsrp": 58,
+    "sinr": 9,
+    "op": "INDOSATOOREDOO",
+    "band": "LTE BAND 1"
+  }
+}
+```
+
+
+![Node-red](images/nodered.png)
 
 ---
 

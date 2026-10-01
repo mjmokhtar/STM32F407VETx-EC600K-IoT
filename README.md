@@ -1,5 +1,7 @@
 # STM32F407VETx-IoT-Monitor
 
+🇮🇩 Bahasa Indonesia | [🇬🇧 English](README.en.md)
+
 STM32F407VET6 IoT environment monitor — XY-MD02 temperature & humidity sensor via RS485 Modbus RTU + Quectel EC600K 4G LTE MQTT publish, diadaptasi dari ESP32 Arduino (sparkworks.id) ke STM32 HAL FreeRTOS.
 
 ---
